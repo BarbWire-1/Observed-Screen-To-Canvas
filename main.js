@@ -22,7 +22,8 @@ renderer.renderBodyToCanvas();
 const observerConfig = {
 	childList: true,
 	subtree: true,
-	attributes: true,
+    attributes: true,
+    attributeOldValue: true, 
 };
 const observedElements = [document.body];
 const callbacks = [
