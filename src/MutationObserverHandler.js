@@ -1,9 +1,10 @@
+// TODO add add/remove observer
 export class MutationObserverHandler {
     constructor(config, elements, ...callbacks) {
         this.callbacks = callbacks;
         this.config = config;
-        this.elements = elements; // Array of elements to observe
-        this.observers = []; // Array to store MutationObserver instances
+        this.elements = elements;
+        this.observers = [];
     }
 
     startObserving() {
@@ -18,7 +19,7 @@ export class MutationObserverHandler {
     stopObserving() {
         console.log("Stop observing");
         this.observers.forEach(observer => observer.disconnect());
-        this.observers = []; // Clear the observers array
+        this.observers = [];
     }
 
     handleMutations(mutationsList, observer) {

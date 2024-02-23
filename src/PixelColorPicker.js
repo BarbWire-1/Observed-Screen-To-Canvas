@@ -21,7 +21,7 @@ export class PixelColorLogger extends PixelColorPicker {
 
 	logPixelInfo(e) {
 		const { x, y } = e;
-		if (!x || !y) return; // event does NOT include coords!!!
+		if (!x || !y) return; // mutation does NOT serve coords!!!
 		const pixelInfo = this.getPixelRGB(x, y);
 		console.log(`${pixelInfo.rgba} at coord (${x}, ${y})`);
 	}
