@@ -1,4 +1,3 @@
-// Import modules from index.js
 import * as IndexExports from './index.js';
 const {
 	PixelColorLogger,
@@ -6,6 +5,7 @@ const {
 	BodyToCanvas,
 	logMutations,
 } = IndexExports;
+
 
 // Instantiate objects
 const renderer = new BodyToCanvas();
@@ -44,4 +44,27 @@ document.addEventListener('click', (e) => colorLogger.logPixelInfo(e));
 setTimeout(() => {
 	const testElement = document.getElementById('green');
 	testElement.style.background = 'orange';
+}, 5000);
+
+
+function getRandomColor() {
+
+    const random = () => Math.floor(Math.random() * 256)
+    const r =random();
+    const g = random();
+    const b = random();
+    return `rgb(${r}, ${g}, ${b})`; // Return the RGB color string
+}
+
+function changeBackgroundColorRandomly(elementId) {
+    const randomColor = getRandomColor();
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.style.background = randomColor;
+    }
+}
+
+
+setInterval(() => {
+    changeBackgroundColorRandomly('green'); 
 }, 5000);

@@ -46,7 +46,7 @@ export function logMutations(mutationsList) {
                          )
                     };
                 */
-                  return;
+                  
                     break;
                default:
                     logs = {
@@ -55,7 +55,6 @@ export function logMutations(mutationsList) {
                     };
           }
          console.log("Mutations detected:");
-         console.group();
          console.log(logs)
      });
 }

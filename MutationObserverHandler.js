@@ -22,7 +22,7 @@ export class MutationObserverHandler {
     }
 
     handleMutations(mutationsList, observer) {
-        console.log("Handling mutations");
+        //console.log("Handling mutations");
         this.callbacks.forEach(callback => {
             if (typeof callback === 'function') {
                 callback(mutationsList, observer);
