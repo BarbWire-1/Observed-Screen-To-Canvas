@@ -37,9 +37,12 @@ const observerHandler = new MutationObserverHandler(
 
 observerHandler.startObserving();
 
-// Add click event listener to document
+
 document.addEventListener('click', (e) => colorLogger.logPixelInfo(e));
 
+
+/*
+//TESTING
 // Mutation to trigger canvas rerender with a timeout
 setTimeout(() => {
 	const testElement = document.getElementById('green');
@@ -66,5 +69,6 @@ function changeBackgroundColorRandomly(elementId) {
 
 
 setInterval(() => {
-    changeBackgroundColorRandomly('green'); 
+    changeBackgroundColorRandomly('green');
 }, 5000);
+*/
