@@ -1,3 +1,6 @@
+// Unfortunately html2canvas uses document.write()
+// Also it creates a canvas in DOM although I drawImage to an offscreen canvas, therefore blocked logging for mutation on childList - need to test consequences
+
 import * as IndexExports from './index.js';
 const {
 	PixelColorLogger,
@@ -41,7 +44,7 @@ observerHandler.startObserving();
 document.addEventListener('click', (e) => colorLogger.logPixelInfo(e));
 
 
-/*
+
 //TESTING
 // Mutation to trigger canvas rerender with a timeout
 setTimeout(() => {
@@ -50,17 +53,12 @@ setTimeout(() => {
 }, 5000);
 
 
-function getRandomColor() {
 
-    const random = () => Math.floor(Math.random() * 256)
-    const r =random();
-    const g = random();
-    const b = random();
-    return `rgb(${r}, ${g}, ${b})`; // Return the RGB color string
+function getRandomHex() {
+    return  "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0")
 }
-
 function changeBackgroundColorRandomly(elementId) {
-    const randomColor = getRandomColor();
+    const randomColor = getRandomHex();
     const element = document.getElementById(elementId);
     if (element) {
         element.style.background = randomColor;
@@ -71,4 +69,3 @@ function changeBackgroundColorRandomly(elementId) {
 setInterval(() => {
     changeBackgroundColorRandomly('green');
 }, 5000);
-*/

@@ -5,6 +5,10 @@ export const logPixelInfo = (picker) => (e)=> {
   console.log(`${pixelInfo.rgba} at coord (${x}, ${y})`);
 }
 
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+}
+
 export function logMutations(mutationsList) {
 
      mutationsList.forEach((mutation) => {
@@ -46,7 +50,7 @@ export function logMutations(mutationsList) {
                          )
                     };
                 */
-                  
+
                     break;
                default:
                     logs = {
@@ -54,7 +58,12 @@ export function logMutations(mutationsList) {
                          mutationType: mutation.type
                     };
           }
-         console.log("Mutations detected:");
-         console.log(logs)
+
+
+
+         if (!isEmpty(logs)) {// only suppresses login for html2canvas mutations, but does NOT avoid them :(
+             console.log("Mutations detected:");
+             console.log(logs)
+         }
      });
 }
