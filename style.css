@@ -1,0 +1,27 @@
+body {
+     margin: 0;
+     padding: 0;
+     width: 100vw;
+     height: 100vh;
+     overflow: hidden;
+     position: relative;
+     background: red;
+     font-family:Arial, Helvetica, sans-serif
+}
+
+p {
+     font-size: 50px;
+     font-weight: bold;
+}
+.circle {
+     width: 200px;
+     height: 200px;
+     border-radius: 50%;
+}
+#blue {
+     background: blue;
+}
+
+#green {
+     background: green;
+}
