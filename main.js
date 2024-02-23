@@ -10,22 +10,24 @@ const {
 // Instantiate objects
 const renderer = new BodyToCanvas();
 const colorLogger = new PixelColorLogger(renderer.offscreenCtx);
-const observerConfig = {
-  childList: true,
-  subtree: true,
-  attributes: true
-};
 
 // Initialize canvas rendering
 renderer.renderBodyToCanvas();
 
 // Create mutation observer
-const observerHandler = new MutationObserverHandler(
-  observerConfig,
-  logMutations,
-  colorLogger.logPixelInfo,
-  renderer.renderBodyToCanvas.bind(renderer)
-);
+// configuration, elements to observe, and callbacks
+const observerConfig = {
+    childList: true,
+    subtree: true,
+    attributes: true
+};
+const observedElements = [document.body];
+const callbacks = [logMutations, colorLogger.logPixelInfo, renderer.renderBodyToCanvas.bind(renderer)];
+
+// Create an instance of MutationObserverHandler
+const observerHandler = new MutationObserverHandler(observerConfig, observedElements, ...callbacks);
+
+
 observerHandler.startObserving();
 
 // Add click event listener to document
