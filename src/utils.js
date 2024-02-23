@@ -1,9 +1,4 @@
-export const logPixelInfo = (picker) => (e)=> {
-  const { x, y } = e;
-  if (!x || !y) return; // event does NOT include coords!!!
-  const pixelInfo = picker.getPixelRGB(x, y);
-  console.log(`${pixelInfo.rgba} at coord (${x}, ${y})`);
-}
+
 
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
