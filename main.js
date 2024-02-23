@@ -1,7 +1,5 @@
 // Import modules from index.js
 import * as IndexExports from "./index.js";
-
-// Destructure the IndexExports object for usage
 const {
   PixelColorLogger,
   MutationObserverHandler,
@@ -9,38 +7,29 @@ const {
   logMutations,
 } = IndexExports;
 
-// Create instances and setup callbacks
+// Instantiate objects
 const renderer = new BodyToCanvas();
-// IIFE to create callback-function and directly invoke for init
-const renderCallback = () => {
-    renderer.renderBodyToCanvas();
-};
-renderCallback()
-
-
-const observerConfig = { childList: true, subtree: true, attributes: true };
 const colorLogger = new PixelColorLogger(renderer.offscreenCtx);
+const observerConfig = {
+  childList: true,
+  subtree: true,
+  attributes: true
+};
 
+// Initialize canvas rendering
+renderer.renderBodyToCanvas();
+
+// Create mutation observer
 const observerHandler = new MutationObserverHandler(
   observerConfig,
   logMutations,
   colorLogger.logPixelInfo,
-  renderCallback
+  renderer.renderBodyToCanvas.bind(renderer)
 );
 observerHandler.startObserving();
 
-
-
-// Function to log pixel information
-function logPixelInfo(e) {
-  const { x, y } = e;
-  if (!x || !y) return; // if event does NOT include coords!!!
-  const pixelInfo = colorLogger.getPixelRGB(x, y);
-  console.log(`${pixelInfo.rgba} at coord (${x}, ${y})`);
-}
-
 // Add click event listener to document
-document.addEventListener("click", logPixelInfo);
+document.addEventListener("click", (e) => colorLogger.logPixelInfo(e));
 
 // Mutation to trigger canvas rerender with a timeout
 setTimeout(() => {
